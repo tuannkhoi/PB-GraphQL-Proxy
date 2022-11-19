@@ -1,0 +1,22 @@
+type User {
+  username: String!
+  password: String!
+  email: String
+  emailVerified: Boolean
+  phoneNumber: String
+}
+
+input NewUser {
+  username: String!
+  password: String!
+  email: String
+  phoneNumber: String
+}
+
+type Query {
+  users: [User!]!
+}
+
+type Mutation {
+  createNewUser(input: NewUser!): User!
+}
