@@ -11,7 +11,7 @@ import (
 )
 
 // CreateNewUser is the resolver for the createNewUser field.
-func (r *mutationResolver) CreateNewUser(_ context.Context, input *model.NewUser) (*model.User, error) {
+func (r *mutationResolver) CreateNewUser(ctx context.Context, input model.NewUser) (*model.User, error) {
 	newUser := &model.User{
 		Username:    input.Username,
 		Password:    input.Password,
@@ -24,7 +24,7 @@ func (r *mutationResolver) CreateNewUser(_ context.Context, input *model.NewUser
 }
 
 // Users is the resolver for the users field.
-func (r *queryResolver) Users(_ context.Context) ([]*model.User, error) {
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	usersToReturn := r.users
 	// hide every user's password
 	for i := range usersToReturn {
