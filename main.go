@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	log "github.com/sirupsen/logrus"
 
 	"github.com/99designs/gqlgen/graphql/handler"
@@ -37,8 +39,13 @@ func main() {
 	router.GET("/", playgroundHandler())
 	router.POST("/query", graphqlHandler())
 
-	log.Info("Starting Gin on port 5000")
-	if err := router.Run(":5000"); err != nil {
-		log.Fatalf("got error running Gin: %v", err)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":5000"
+	}
+
+	log.Infof("Starting GraphQL Proxy at localhost%s", port)
+	if err := router.Run(port); err != nil {
+		log.Fatalf("got error running GraphQL Proxy: %v", err)
 	}
 }
