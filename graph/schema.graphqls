@@ -1,22 +1,13 @@
-type User {
-  username: String!
-  password: String!
-  email: String
-  emailVerified: Boolean
-  phoneNumber: String
-}
-
-input NewUser {
-  username: String!
-  password: String!
-  email: String
-  phoneNumber: String
+type HealthPayload {
+  canReachGraphQLProxy: Boolean!
+  canReachMicroservice: Boolean!
+  accessTokenIsValid: Boolean!
 }
 
 type Query {
-  users: [User!]!
+  health(accessToken: String!): HealthPayload!
 }
 
 type Mutation {
-  createNewUser(input: NewUser!): User!
+  dummyMutation(input: Int!): [String!]!
 }

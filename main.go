@@ -32,12 +32,13 @@ func playgroundHandler() gin.HandlerFunc {
 }
 
 func main() {
-	r := gin.Default()
-	r.POST("/query", graphqlHandler())
-	r.GET("/", playgroundHandler())
+	router := gin.Default()
 
-	log.Info("Starting Gin on port 8080")
-	if err := r.Run(); err != nil {
+	router.GET("/", playgroundHandler())
+	router.POST("/query", graphqlHandler())
+
+	log.Info("Starting Gin on port 5000")
+	if err := router.Run(":5000"); err != nil {
 		log.Fatalf("got error running Gin: %v", err)
 	}
 }

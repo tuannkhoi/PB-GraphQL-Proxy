@@ -2,17 +2,8 @@
 
 package model
 
-type NewUser struct {
-	Username    string  `json:"username"`
-	Password    string  `json:"password"`
-	Email       *string `json:"email"`
-	PhoneNumber *string `json:"phoneNumber"`
-}
-
-type User struct {
-	Username      string  `json:"username"`
-	Password      string  `json:"password"`
-	Email         *string `json:"email"`
-	EmailVerified *bool   `json:"emailVerified"`
-	PhoneNumber   *string `json:"phoneNumber"`
+type HealthPayload struct {
+	CanReachGraphQLProxy bool `json:"canReachGraphQLProxy"`
+	CanReachMicroservice bool `json:"canReachMicroservice"`
+	AccessTokenIsValid   bool `json:"accessTokenIsValid"`
 }
